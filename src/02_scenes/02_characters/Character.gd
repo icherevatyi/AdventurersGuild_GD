@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
+signal take_damage
+signal heal
+
 onready var _health_script: Node2D = $AdditionalScripts/Health
 onready var _stats_script: Node2D = $AdditionalScripts/Stats
 onready var _movement_script: Node2D = $AdditionalScripts/Movement
 
-signal take_damage
-signal heal
 
 func _ready() -> void:
 	_connect_signal("take_damage", _health_script, "receive_damage")
@@ -25,3 +26,9 @@ func _connect_signal(signal_name: String, target_node: Node, target_function: St
 				pass
 			else:
 				print("Signal connection warning: ", connect)
+
+
+# this might need  to be updated to pass right damage params! 
+func _on_HurtBox_area_entered(area: Area2D, damage: int) -> void:
+	if area.name == "HitBox":
+		emit_signal("take_damage", damage)

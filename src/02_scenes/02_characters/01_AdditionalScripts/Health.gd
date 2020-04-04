@@ -5,13 +5,12 @@ var _health_current: int
 
 
 func _ready() -> void:
-	_health_current = 1
+	_health_current = _health_max
 
 
 func receive_healing(value: int) -> void:
 	_health_current += value
-	_health_current = min(_health_current, _health_max)
-	print(_health_current)
+	_health_current = int(min(_health_current, _health_max))
 
 
 func receive_damage(value: int) -> void:
