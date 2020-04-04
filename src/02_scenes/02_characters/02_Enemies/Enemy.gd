@@ -4,7 +4,6 @@ signal take_damage
 signal heal
 
 onready var _health_script: Node2D = $AdditionalScripts/Health
-onready var _stats_script: Node2D = $AdditionalScripts/Stats
 onready var _movement_script: Node2D = $AdditionalScripts/Movement
 
 

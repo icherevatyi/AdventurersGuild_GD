@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/02_scenes/02_characters/02_Enemies/01_AdditionalScripts/Movement.gd" type="Script" id=1]
+[ext_resource path="res://src/02_scenes/02_characters/02_Enemies/01_AdditionalScripts/Health.gd" type="Script" id=3]
+[ext_resource path="res://src/02_scenes/02_characters/02_Enemies/Enemy.gd" type="Script" id=4]
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+
+[node name="AdditionalScripts" type="Node" parent="."]
+
+[node name="Health" type="Node2D" parent="AdditionalScripts"]
+script = ExtResource( 3 )
+
+[node name="Movement" type="Node2D" parent="AdditionalScripts"]
+script = ExtResource( 1 )
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered" binds= [ 0 ]]
